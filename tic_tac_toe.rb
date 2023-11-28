@@ -1,5 +1,4 @@
 # tic tac toe board with display, clear and update functions
-
 class Board
   def initialize(player_id)
     @player_id = player_id
@@ -7,7 +6,7 @@ class Board
 
   def clear_board
     board = ['?', '?', '?', '?', '?', '?', '?', '?', '?']
-    puts board.each_slice(3).map { |row| row.join(" | ") }.join("\n" + "-"*11 + "\n")
+    puts board.each_slice(3).map { |row| row.join(" | ") }.join("\n" + "-"*10 + "\n")
   end
 end
 

@@ -1,21 +1,15 @@
-#class for human vs human game
-class Player
-  attr_accessor :score, :turn, :player_number
-
-  def initialize(player_number, score, turn_number)
-    @player_number = player_number
-    @score = score
-    @turn_number = turn
+# tic tac toe board with display, clear and update functions
+class Board
+  def initialize(player_id)
+    @player_id = player_id
   end
 
-  def add_score
-    @score += 1
+  def display_board(board)
+    puts " #{board[0]} | #{board[1]} | #{board[2]} "
+    puts " #{board[3]} | #{board[4]} | #{board[5]} "
+    puts " #{board[6]} | #{board[7]} | #{board[8]} "
   end
 end
 
-player1 = Player.new("player1", 0, 0)
-player2 = Player.new("player2", 0, 0)
-puts player1.player_number
-puts player2.player_number
-player1.add_score
-puts player1.score
+board = Board.new(1)
+board.display_board(0)

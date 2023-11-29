@@ -1,8 +1,8 @@
 # tic tac toe board with display, clear and update functions
 class Board
-  def initialize(player_id)
-    @player_id = player_id
+  def initialize
     @board = ['?', '?', '?', '?', '?', '?', '?', '?', '?']
+    puts "Player 1's Turn"
   end
 
   def draw_board
@@ -27,7 +27,14 @@ class Board
   end
 end
 
-new_board = Board.new(1)
-new_board.clear_board
-new_board.update_board_x(1)
-new_board.update_board_o(0)
+# player class with id
+class Player
+  def initialize(id)
+    @id = id
+    puts "You are Player #{id}"
+  end
+end
+player1 = Player.new(1)
+player2 = Player.new(2)
+game_board = Board.new
+game_board.draw_board

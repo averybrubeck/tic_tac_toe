@@ -29,12 +29,37 @@ end
 
 # player class with id
 class Player
-  def initialize(id)
-    @id = id
-    puts "You are Player #{id}"
+end
+
+# Game class storing the logic
+class Game
+  def initialize
+    @board = Board.clear_board
+    @current_player = 'X'
+  end
+
+  def play
+    loop do
+      @board.draw_board
+      puts "Player #{current_player}, enter your move (0-8)"
+      position = gets.chomp.to_i
+
+      if valid_move?(position)
+        @board.update_board_o(position)
+        break if game_over?
+
+        @current_player = (current_player == 'X' ? 'O' : 'X')
+      else
+        puts "Invalid Move, Try again"
+      end
+    end
   end
 end
-player1 = Player.new(1)
-player2 = Player.new(2)
-game_board = Board.new
-game_board.draw_board
+
+private
+
+def valid_move?(position)
+end
+
+def game_over?
+end

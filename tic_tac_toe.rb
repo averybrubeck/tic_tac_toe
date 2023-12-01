@@ -13,26 +13,20 @@ class Board
     @board = ['?', '?', '?', '?', '?', '?', '?', '?', '?']
     draw_board
   end
-
-  def update_board_x(position)
-    position = position.to_i
-    @board[position] = 'x'
-    draw_board
-  end
-
-  def update_board_o(position)
-    position = position.to_i
-    @board[position] = 'o'
-    draw_board
-  end
 end
 
 # player class with id
 class Player
   def initialize(player_id, marker)
     @player_id = player_id
-    @marker = marker
+    @marker = marker.to_s
     puts 'Invalid Input Try Again' if player_id.length > 1
+  end
+
+  def update_board(position, marker)
+    position = position.to_i
+    @board[position] = marker
+    draw_board
   end
 end
 

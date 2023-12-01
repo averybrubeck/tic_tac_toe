@@ -29,13 +29,18 @@ end
 
 # player class with id
 class Player
+  def initialize(player_id, marker)
+    @player_id = player_id
+    @marker = marker
+    puts 'Invalid Input Try Again' if player_id.length > 1
+  end
 end
 
 # Game class storing the logic
 class Game
   def initialize
     @board = Board.clear_board
-    @current_player = 'X'
+    @current_player = Player.player_id
   end
 
   def play
@@ -45,12 +50,12 @@ class Game
       position = gets.chomp.to_i
 
       if valid_move?(position)
-        @board.update_board_o(position)
+        @board.update_board_o(position, marker)
         break if game_over?
 
         @current_player = (current_player == 'X' ? 'O' : 'X')
       else
-        puts "Invalid Move, Try again"
+        puts 'Invalid Move, Try again'
       end
     end
   end
@@ -59,6 +64,8 @@ end
 private
 
 def valid_move?(position)
+  position = position.to_i
+  true unless position.negative? || position > 8
 end
 
 def game_over?

@@ -1,7 +1,7 @@
 # tic tac toe board with display, clear and update functions
 class Board
   attr_reader :board
-  
+
   def initialize
     @board = ['?', '?', '?', '?', '?', '?', '?', '?', '?']
     puts "Player 1's Turn"
@@ -47,7 +47,7 @@ class Game
   end
 
   def play
-      loop do
+    loop do
       @board.draw_board
       puts "Player #{@player.player_id}, enter your move (0-8)"
       position = gets.chomp.to_i
@@ -62,15 +62,42 @@ class Game
       end
     end
   end
-private
 
-def valid_move?(position)
-  position = position.to_i
-  !(position.negative? || position > 8 || @board.board[position] != '?')
-end
+  private
 
-def game_over?
-end
+  def valid_move?(position)
+    position = position.to_i
+    !(position.negative? || position > 8 || @board.board[position] != '?')
+  end
 
+  def game_over?
+    if check_winner('X')
+      puts 'Player X Wins!'
+      true
+    elsif check_winner('O')
+      puts 'Player O Wins!'
+      true
+    elsif board_full?
+      puts 'It\'s a draw!'
+    else
+      false
+    end
+  end
+
+  def check_winner(marker)
+    winning_combinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], # Rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], # Columns
+    [0, 4, 8], [2, 4, 6]             # Diagonals
+    ]
+
+    winning_combinations.any? do |combo|
+      combo.all? { |position| @board.board[position] == marker}
+    end
+  end
+
+  def board_full?
+    @board.board.none? { |cell| cell == '?'}
+  end
 game = Game.new
 game.play end

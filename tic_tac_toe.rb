@@ -67,7 +67,7 @@ class Game
 
   def valid_move?(position)
     position = position.to_i
-    !(position.negative? || position > 8 || @board.board[position] != '?')
+    !(position.negative? || position > 8 || position.to_s.include?('.') || @board.board[position] != '?')
   end
 
   def game_over?
@@ -86,9 +86,9 @@ class Game
 
   def check_winner(marker)
     winning_combinations = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], # Rows
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], # Columns
-    [0, 4, 8], [2, 4, 6]             # Diagonals
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], # Rows
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], # Columns
+      [0, 4, 8], [2, 4, 6]             # Diagonals
     ]
 
     winning_combinations.any? do |combo|
